@@ -9,18 +9,22 @@ export const options = {
         name: 'GitHub Testing (Demo)'
     },
     scenarios: {
-        shared_iter_scenario: {
-            executor: 'shared-iterations',
-            vus: 10,
-            iterations: 100,
-            startTime: '0s',
-        },
-        per_vu_scenario: {
+        spike_testing: {
             executor: 'per-vu-iterations',
-            vus: 10,
-            iterations: 10,
-            startTime: '10s',
+            stages: [
+                { duration: '10s', target: 100 }, // fast ramp-up to a high point
+                // No plateau
+                { duration: '1m', target: 0 }, // quick ramp-down to 0 users
+            ]
         },
+        stress_testing: {
+            executor: 'per-vu-iterations',
+            stages: [
+                { duration: '10s', target: 100 }, // traffic ramp-up from 1 to a higher 200 users over 10 minutes.
+                { duration: '1m', target: 100 }, // stay at higher 200 users for 30 minutes
+                { duration: '30s', target: 0 }, // ramp-down to 0 users
+            ]
+        }
     },
     thresholds: {
         // Assert that 99% of requests finish within 3000ms.
