@@ -1,0 +1,23 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+
+jobs:
+  protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: grafana/setup-k6-action@v1
+      - uses: grafana/run-k6-action@v1
+        env:
+          K6_CLOUD_TOKEN: 74250d1356bf88cb3b031a377cfd4ea8867b35b58ce39860bd6c36de9847b188
+          K6_CLOUD_PROJECT_ID: 3719141
+        with:
+          path: |
+            *.js
+          cloud-run-locally: true
+          
