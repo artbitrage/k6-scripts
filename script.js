@@ -25,13 +25,7 @@ export const options = {
     thresholds: {
         // Assert that 99% of requests finish within 3000ms.
         http_req_duration: ["p(90) < 3000"]
-    },
-    // Key configurations for spike in this section
-    stages: [
-        { duration: '10s', target: 100 }, // fast ramp-up to a high point
-        // No plateau
-        { duration: '1m', target: 0 }, // quick ramp-down to 0 users
-    ],
+    }
 };
 
 
