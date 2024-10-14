@@ -10,7 +10,7 @@ export const options = {
     },
     scenarios: {
         spike_testing: {
-            executor: 'ramping-rate',
+            executor: 'ramping-vus',
             startVUs: 0,
             stages: [
                 { duration: '10s', target: 100 }, // fast ramp-up to a high point
@@ -20,7 +20,7 @@ export const options = {
             gracefulRampDown: '0s'
         },
         stress_testing: {
-            executor: 'ramping-rate',
+            executor: 'ramping-vus',
             startVUs: 0,
             stages: [
                 { duration: '10s', target: 100 }, // traffic ramp-up from 1 to a higher 200 users over 10 minutes.
