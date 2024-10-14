@@ -13,7 +13,7 @@ export const options = {
             executor: 'ramping-vus',
             startVUs: 0,
             stages: [
-                { duration: '10s', target: 100 }, // fast ramp-up to a high point
+                { duration: '10s', target: 50 }, // fast ramp-up to a high point
                 // No plateau
                 { duration: '1m', target: 0 }, // quick ramp-down to 0 users
             ],
@@ -23,8 +23,8 @@ export const options = {
             executor: 'ramping-vus',
             startVUs: 0,
             stages: [
-                { duration: '10s', target: 100 }, // traffic ramp-up from 1 to a higher 200 users over 10 minutes.
-                { duration: '1m', target: 100 }, // stay at higher 200 users for 30 minutes
+                { duration: '10s', target: 50 }, // traffic ramp-up from 1 to a higher 200 users over 10 minutes.
+                { duration: '1m', target: 50 }, // stay at higher 200 users for 30 minutes
                 { duration: '30s', target: 0 }, // ramp-down to 0 users
             ],
             gracefulRampDown: '0s'
